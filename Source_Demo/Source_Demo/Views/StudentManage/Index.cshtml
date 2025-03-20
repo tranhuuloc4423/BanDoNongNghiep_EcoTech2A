@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "Quản lý học sinh";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var breadCrumb = new Source_Demo.ViewModels.VM_BreadCrumb
+    {
+        CurrentName = "Quản lý học sinh"
+    };
+}
+@section Styles{
+    @await Html.PartialAsync("_P_StylesTableAndFormBasic")
+}
+@section Scripts {
+    @await Html.PartialAsync("_P_ScriptsTableAndFormBasic")
+    <script src="~/controllers/student_manage.js" asp-append-version="true"></script>
+}
+
+@await Html.PartialAsync("_P_BreadCrumb", breadCrumb)
+
+@await Html.PartialAsync("_P_DeleteModal")
+
+<div class="row">
+    <div class="col-12 pagination-rounded">
+        <div class="card">
+            <div class="card-body" id="div_main_table">
+
+                <div class="row border-bottom mb-1">
+                    <div class="row col-12 mx-0 px-1">
+                        <div class="col-auto mb-1 px-1">
+                            <button class="btn btn-sm btn-primary waves-effect waves-light" onclick="ShowAddModal(this)"
+                                    dir="ltr" data-style="zoom-in">
+                                <i class="ti-plus mr-1"></i> Thêm mới
+                            </button>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 mb-1 px-1">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="search_status">Trạng thái</label>
+                                </div>
+                                <select id="search_status" class="selectpicker form-control p-0" style="border-color: #ced4da;"
+                                        data-none-selected-text="Không có giá trị được chọn..." onchange="Search();"
+                                        data-none-results-text="Không tìm thấy kết quả phù hợp" data-style="btn-white btn-sm"
+                                        data-live-search="false" data-size="10">
+                                    @*<option value="-2">--Tất cả--</option>*@
+                                    <option value="1">Hoạt động</option>
+                                    <option value="0">Khóa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 mb-1 px-1">
+                            <button class="ladda-button btn btn-sm btn-info waves-effect waves-light" onclick="Search()"
+                                    dir="ltr" data-style="zoom-in">
+                                <i class="ti-search mr-1"></i> Xem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="table_main" class="table table-sm table-light nowrap text-blue table-striped" width=100%>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                <span style="font-size:13px;" id="refreshDataTable" onclick="Search()"><i class="mdi mdi-autorenew"> </i> Làm mới</span>
+                            </th>
+                            <th>Họ</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Giới tính</th>
+                            <th>Ngày sinh</th>
+                            <th>Ngày tạo</th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+            <div class="card-body" style="display:none;" id="div_view_panel"></div>
+        </div>
+    </div>
+</div>

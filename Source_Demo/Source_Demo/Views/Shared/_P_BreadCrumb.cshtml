@@ -1,0 +1,43 @@
+﻿@model Source_Demo.ViewModels.VM_BreadCrumb
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="ti-home"></i></a></li>
+                        @if (!string.IsNullOrEmpty(Model.ParentName))
+                        {
+                            <li class="breadcrumb-item"><a href="@Model.ParentUrl">@Model.ParentName</a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ChildName))
+                        {
+                            <li class="breadcrumb-item"><a href="@Model.ChildUrl">@Model.ChildName</a></li>
+                        }
+                        <li class="breadcrumb-item active">@Model.CurrentName</li>
+                    </ol>
+                </div>
+                @if (!Model.IsHiddenTitle)
+                {
+                    <h4 class="page-title" style="text-transform:uppercase;">@Model.CurrentName </h4>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="ti-home"></i></a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+}

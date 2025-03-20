@@ -1,0 +1,65 @@
+﻿@model Source_Demo.Models.M_Student
+
+<div class="w-auto row">
+    <button type="button" class="btn btn-link waves-effect col-auto" onclick="BackToTable();"><i class="ti-arrow-left"></i></button>
+    <h4 class="page-title col text-center text-warning">#@Model.id @Model.firstName @Model.lastName</h4>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <h5 class="mt-0 mb-0 mb-0 text-uppercase bg-light p-2"><i class="mdi mdi-information-outline mr-1"></i> <b>Thông tin </b></h5>
+
+            <div class="card-body">
+                <p class="mb-1"><span class="font-weight-bold">Họ: </span>@Model.firstName </p>
+                <p class="mb-1"><span class="font-weight-bold">Tên: </span>@Model.lastName </p>
+                <p class="mb-1"><span class="font-weight-bold">Email: </span>@Model.email </p>
+                <p class="mb-1"><span class="font-weight-bold">SDT: </span>@Model.phoneNumber </p>
+                <p class="mb-1"><span class="font-weight-bold">Giới tính: </span>@(Model.gender == 1 ? "Nữ" : "Nam") </p>
+                <p class="mb-1"><span class="font-weight-bold">Ngày sinh: </span>@(Model.birthday.HasValue ? Model.birthday.Value.ToString("dd-MM-YYYY") : "") </p>
+                <p class="mb-1"><span class="font-weight-bold">Address: </span>@Model.address </p>
+                <p class="mb-1"><span class="font-weight-bold">Trạng thái: </span>@(Model.status == 1 ? "Hoạt động" : "Khóa")</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <h5 class="mt-0 mb-0 mb-0 text-uppercase bg-light p-2"><i class="mdi mdi-history mr-1"></i> <b>Thông tin khởi tạo </b></h5>
+            <div class="card-body row m-0">
+                <div class="col-12 col-sm-12 col-md-12 px-0">
+                    <div class="col-12 row mb-1 m-0 px-0">
+                        <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0">Ngày tạo: </label>
+                        <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                            @Model.createdAt
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 px-0">
+                    <div class="col-12 row mb-1 m-0 px-0">
+                        <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0">Người tạo: </label>
+                        <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                            @Model.createdBy
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 px-0">
+                    <div class="col-12 row mb-1 m-0 px-0">
+                        <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0">Cập nhật lần cuối: </label>
+                        <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                            @Model.updatedAt
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 px-0">
+                    <div class="col-12 row mb-1 m-0 px-0">
+                        <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0">Người cập nhật: </label>
+                        <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                            @Model.updatedBy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

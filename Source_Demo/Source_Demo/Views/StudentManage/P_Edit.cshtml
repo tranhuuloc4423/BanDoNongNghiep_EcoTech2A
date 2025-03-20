@@ -1,0 +1,98 @@
+﻿@model Source_Demo.Models.EM_Student
+
+<div class="w-auto row">
+    <button type="button" class="btn btn-link waves-effect col-auto" onclick="BackToTable();"><i class="ti-arrow-left"></i></button>
+    <h4 class="page-title col text-center text-warning">#@Model.id @Model.firstName @Model.lastName</h4>
+</div>
+<div class="row">
+    <div class="col-12 pagination-rounded">
+
+        <form method="post" class="needs-validation" novalidate id="form_data_edit">
+            @Html.AntiForgeryToken()
+            <input asp-for="id" type="hidden" />
+            <input asp-for="timer" type="hidden" />
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-8 col-xl-6">
+                    <div class="card">
+                        <h5 class="mt-0 mb-0 mb-0 text-uppercase bg-light p-2"><i class="mdi mdi-information-outline mr-1"></i> <b>Thông tin </b></h5>
+
+                        <div class="card-body row m-0">
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="firstName">Họ: <span class="text-danger">(*)</span></label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <input asp-for="firstName" class="form-control form-control-sm" maxlength="20" placeholder="Nhập họ" required />
+                                    <span asp-validation-for="firstName" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="lastName">Tên: <span class="text-danger">(*)</span></label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <input asp-for="lastName" class="form-control form-control-sm" maxlength="20" placeholder="Nhập tên" required />
+                                    <span asp-validation-for="lastName" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="email">Email: </label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <input type="email" asp-for="email" class="form-control form-control-sm" maxlength="50" placeholder="Nhập email" />
+                                    <span asp-validation-for="email" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="phoneNumber">Điện thoại: </label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <input asp-for="phoneNumber" class="form-control form-control-sm" maxlength="50" placeholder="Nhập điện thoại" />
+                                    <span asp-validation-for="phoneNumber" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="address">Address: </label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <input type="number" asp-for="address" class="form-control form-control-sm" maxlength="10" placeholder="Nhập address" />
+                                    <span asp-validation-for="address" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="birthday">Ngày sinh: </label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <input type="date" asp-for="birthday" class="form-control form-control-sm" max="@DateTime.Now.ToString("yyyy-MM-dd")" min="1900-01-01" data-val="true" />
+                                    <span asp-validation-for="birthday" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="gender">Giới tính: </label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <select asp-for="gender" class="form-control form-control-sm bg-white">
+                                        <option value="0">Nam</option>
+                                        <option value="1">Nữ</option>
+                                    </select>
+                                    <span asp-validation-for="gender" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 row mb-1 m-0 px-0">
+                                <label class="col-6 col-sm-4 col-md-4 col-lg-4 font-weight-bold px-0" asp-for="status">Trạng thái: </label>
+                                <div class="col-6 col-sm-8 col-md-8 col-lg-8 px-0">
+                                    <select asp-for="status" id="Status" class="form-control form-control-sm">
+                                        <option value="0">Khóa</option>
+                                        <option value="1">Hoạt động</option>
+                                    </select>
+                                    <span asp-validation-for="status" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-center mt-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="BackToTable()"><i class="mdi mdi-close mr-1"></i>Hủy</button>
+                                <button type="submit" class="btn btn-sm btn-success ladda-button" dir="ltr" data-style="zoom-in" id="btn_submit_form_edit"><i class="mdi mdi-content-save mr-1"></i>Lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
