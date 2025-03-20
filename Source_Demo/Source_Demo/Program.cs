@@ -79,6 +79,9 @@ builder.Services.AddHttpClient("custom")
 
 builder.Services.AddSingleton<ICallApi, CallApi>();
 builder.Services.AddSingleton<IS_Student, S_Student>();
+builder.Services.AddSingleton<IS_Enterprise, S_Enterprise>();
+builder.Services.AddSingleton<IS_Province, S_Province>();
+builder.Services.AddSingleton<IS_District, S_District>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -97,15 +100,17 @@ else
     app.UseHsts();
 }
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    OnPrepareResponse = ctx =>
-    {
-        const int durationInSeconds = 7 * 60 * 60 * 24; //7 days
-        ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.CacheControl] =
-            "public,max-age=" + durationInSeconds;
-    }
-});
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    OnPrepareResponse = ctx =>
+//    {
+//        const int durationInSeconds = 7 * 60 * 60 * 24; //7 days
+//        ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.CacheControl] =
+//            "public,max-age=" + durationInSeconds;
+//    }
+//});
+
+app.UseStaticFiles();
 
 app.UseCookiePolicy(); ;
 
@@ -129,7 +134,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+        pattern: "{controller=Map}/{action=Index}/{id?}");
 });
 
 app.Run();

@@ -15,26 +15,15 @@
 
     <!-- Style -->
     <partial name="_P_Styles" />
+    @RenderSection("Styles", required: false)
 </head>
 
 <body>
     <div class="layout-wrapper layout-content-navbar">
-        <div class="layout-container">
-            <partial name="_P_TopBar" />
-            <!-- Menu -->
-            <div class="layout-page">
-                <partial name="_P_Navigation" />
-                @RenderBody();
-            </div>
-            <!-- Overlay -->
-            <div class="layout-overlay layout-menu-toggle"></div>
-        </div>
-    </div>
-    <div class="buy-now">
-        <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-           target="_blank"
-           class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
+        @RenderBody()
     </div>
     <partial name="_P_Scripts" />
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>
